@@ -5,7 +5,6 @@ class Post extends Eloquent {
 
 	public static $rules = array(
 		'title' => 'required',
-		'body' => 'required',
-		'user_id' => 'required'
+		'body' => 'required'
 	);
 }

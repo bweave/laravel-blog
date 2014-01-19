@@ -2,32 +2,12 @@
 
 @section('main')
 
-<h1>Show Post</h1>
+<div class="page-header">
+    <h1>{{$post->title}} <small>{{$post->created_at->toFormattedDateString()}}</small></h1>
+</div>
 
-<p>{{ link_to_route('posts.index', 'Return to all posts') }}</p>
-
-<table class="table table-striped table-bordered">
-	<thead>
-		<tr>
-			<th>Title</th>
-				<th>Body</th>
-				<th>User_id</th>
-		</tr>
-	</thead>
-
-	<tbody>
-		<tr>
-			<td>{{{ $post->title }}}</td>
-					<td>{{{ $post->body }}}</td>
-					<td>{{{ $post->user_id }}}</td>
-                    <td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
-                    <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
-                            {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
-                        {{ Form::close() }}
-                    </td>
-		</tr>
-	</tbody>
-</table>
+<div class="post-body">
+    {{$post->body}}
+</div>
 
 @stop

@@ -2,9 +2,9 @@
 
 @section('main')
 
-<h1>All Posts</h1>
-
-<p>{{ link_to_route('posts.create', 'Add new post') }}</p>
+<div class="page-header clearfix">
+    <h1>Posts</h1>
+</div>
 
 @if ($posts->count())
 	<table class="table table-striped table-bordered">
@@ -12,7 +12,7 @@
 			<tr>
 				<th>Title</th>
 				<th>Body</th>
-				<th>User_id</th>
+                <th colspan="3">Actions</th>
 			</tr>
 		</thead>
 
@@ -21,10 +21,9 @@
 				<tr>
 					<td>{{{ $post->title }}}</td>
 					<td>{{{ $post->body }}}</td>
-					<td>{{{ $post->user_id }}}</td>
-                    <td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-info')) }}</td>
-                    <td>
-                        {{ Form::open(array('method' => 'DELETE', 'route' => array('posts.destroy', $post->id))) }}
+					<td>{{ link_to_route('posts.show', 'View', array($post->id), array('class' => 'btn btn-success')) }}</td>
+                    <td>{{ link_to_route('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-warning')) }}</td>
+                    <td>{{ Form::open(['method' => 'DELETE', 'route' => ['posts.destroy', $post->id], 'role' => 'form']) }}
                             {{ Form::submit('Delete', array('class' => 'btn btn-danger')) }}
                         {{ Form::close() }}
                     </td>
@@ -33,7 +32,7 @@
 		</tbody>
 	</table>
 @else
-	There are no posts
+	<p>There are no posts</p>
 @endif
 
 @stop

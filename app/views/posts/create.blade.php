@@ -4,33 +4,37 @@
 
 <h1>Create Post</h1>
 
-{{ Form::open(array('route' => 'posts.store')) }}
-	<ul>
-        <li>
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title') }}
-        </li>
+{{ Form::open(['route' => 'posts.store', 'class' => 'form-horizontal', 'role' => 'form']) }}
 
-        <li>
-            {{ Form::label('body', 'Body:') }}
-            {{ Form::textarea('body') }}
-        </li>
+<div class="form-group">
+    <div class="col-sm-2">
+        {{ Form::label('title', 'Title:') }}
+    </div>
+    <div class="col-sm-10">
+        {{ Form::text('title') }}
+    </div>
+</div>
 
-        <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::text('user_id') }}
-        </li>
+<div class="form-group">
+    <div class="col-sm-2">
+        {{ Form::label('body', 'Body:') }}
+    </div>
+    <div class="col-sm-10">
+        {{ Form::textarea('body') }}
+    </div>
+</div>
 
-		<li>
-			{{ Form::submit('Submit', array('class' => 'btn btn-info')) }}
-		</li>
-	</ul>
+<div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+        {{ Form::submit('Submit', array('class' => 'btn btn-primary')) }}
+    </div>
+</div>
 {{ Form::close() }}
 
 @if ($errors->any())
-	<ul>
-		{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-	</ul>
+<ul>
+  {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+</ul>
 @endif
 
 @stop

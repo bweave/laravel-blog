@@ -2,35 +2,43 @@
 
 @section('main')
 
-<h1>Edit Post</h1>
-{{ Form::model($post, array('method' => 'PATCH', 'route' => array('posts.update', $post->id))) }}
-	<ul>
-        <li>
-            {{ Form::label('title', 'Title:') }}
-            {{ Form::text('title') }}
-        </li>
+<div class="page-header">
+    <h1>Edit Post: <small>{{$post->title}}</small></h1>
+</div>
 
-        <li>
-            {{ Form::label('body', 'Body:') }}
-            {{ Form::textarea('body') }}
-        </li>
+{{ Form::model($post, ['method' => 'PATCH', 'route' => ['posts.update', $post->id], 'class' => 'form-horizontal', 'role' => 'form']) }}
 
-        <li>
-            {{ Form::label('user_id', 'User_id:') }}
-            {{ Form::text('user_id') }}
-        </li>
+<div class="form-group">
+    <div class="col-sm-2">
+        {{ Form::label('title', 'Title:') }}
+    </div>
+    <div class="col-sm-10">
+        {{ Form::text('title', $post->title, ['class' => 'form-control']) }}
+    </div>
+</div>
 
-		<li>
-			{{ Form::submit('Update', array('class' => 'btn btn-info')) }}
-			{{ link_to_route('posts.show', 'Cancel', $post->id, array('class' => 'btn')) }}
-		</li>
-	</ul>
+<div class="form-group">
+    <div class="col-sm-2">
+        {{ Form::label('body', 'Body:') }}
+    </div>
+    <div class="col-sm-10">
+        {{ Form::textarea('body', $post->body, ['class' => 'form-control']) }}
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-sm-10 col-sm-offset-2">
+        {{ Form::submit('Update', array('class' => 'btn btn-primary')) }}
+        {{ link_to_route('posts.index', 'Cancel', null, array('class' => 'btn btn-danger')) }}
+    </div>
+</div>
+
 {{ Form::close() }}
 
 @if ($errors->any())
-	<ul>
-		{{ implode('', $errors->all('<li class="error">:message</li>')) }}
-	</ul>
+<ul>
+  {{ implode('', $errors->all('<li class="error">:message</li>')) }}
+</ul>
 @endif
 
 @stop
