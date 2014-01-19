@@ -26,7 +26,7 @@ $app = new Illuminate\Foundation\Application;
 
 $env = $app->detectEnvironment(array(
 
-	'local' => array('Brians-MackBook-Pro.local'),
+	'local' => array('precise64'),
 
 ));
 
